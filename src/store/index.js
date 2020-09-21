@@ -5,10 +5,22 @@ export default createStore({
     contador: 101,
   },
   mutations: {
-    incrementar(state) {
-      state.contador = state.contador + 10;
+    incrementar(state, payload) {
+      state.contador = state.contador + payload;
+    },
+    decremento(state, payload) {
+      state.contador = state.contador - payload;
     },
   },
-  actions: {},
+  actions: {
+    accionBoton({ commit }, objeto) {
+      console.log("OBJETO EN STORE", objeto);
+      if (objeto.state) {
+        commit("incrementar", Number(objeto.number));
+      } else {
+        commit("decremento", Number(objeto.number));
+      }
+    },
+  },
   modules: {},
 });
